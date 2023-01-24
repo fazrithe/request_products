@@ -71,7 +71,7 @@ class LoginController extends Controller
             $area = Auth::user()->area;
             return redirect('showProduct-gudang');
         }else{
-            return redirect('/')->with('error', 'Email atau Password Salah');
+            return redirect('/gudang')->with('error', 'Email atau Password Salah');
         }
     }
 
