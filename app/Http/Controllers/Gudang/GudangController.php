@@ -27,9 +27,10 @@ class GudangController extends Controller
     }
 
     public function index(){
-        $requestProducts = Request_product::select('request_products.sales_id','request_products.total','request_products.request_time','request_products.answare_time','request_products.answare','products.nama_barang')
+        $requestProducts = Request_product::select('request_products.id','request_products.sales_id','request_products.total','request_products.request_time','request_products.answare_time','request_products.answare','products.nama_barang')
         ->where('gudang_id',Auth::user()->id)
         ->join('products','products.id', '=','request_products.product_id')
+        ->orderby('request_products.id','DESC')
         ->get();
         $data = Product::find(1);
         $datastock = Sales_stock::where('product_id',1)->first();
@@ -38,5 +39,13 @@ class GudangController extends Controller
         $total = $total_gudang + $total_toko;
         return view('gudang.show', compact('requestProducts','data','datastock','total','total_toko','total_gudang'));
 
+    }
+
+    public function update(Request $request){
+        $requestProduct = Request_product::find($request->id);
+        $requestProduct->answare_time = date('Y-m-d H:i:s');
+        $requestProduct->answare = $request->answare;
+        $requestProduct->save();
+        return redirect('/showProduct-gudang');
     }
 }

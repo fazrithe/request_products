@@ -36,6 +36,11 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
 Route::post('actionlogin-gudang', [LoginController::class, 'actionloginGudang'])->name('actionlogin.gudang');
 Route::post('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout');
+
+//Gudang
+Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
+
+
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
@@ -48,4 +53,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('updateProduct', [StockController::class, 'updateProduct'])->name('product.update');
     Route::get('showProduct', [StockController::class, 'showProduct'])->name('product.show');
     Route::get('showProduct-gudang', [GudangController::class, 'index'])->name('product.show.gudang');
+    Route::post('updateRequest', [GudangController::class, 'update'])->name('request.update');
 });
