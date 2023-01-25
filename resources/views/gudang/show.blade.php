@@ -41,7 +41,13 @@
                             @foreach ($requestProducts as $index => $item)
                               <tr>
                                 <th scope="row">{{ $index + 1 }}</th>
-                                <td>{{ $item->user_name }}</td>
+                                <td>
+                                    @if(!empty($item->sales_name))
+                                    {{ $item->sales_name }}
+                                    @else
+                                    {{ $item->user_name }}
+                                    @endif
+                                </td>
                                 <td><img src="https://tianliong.co.id/info/assets/img/products/{{ $item->gambar }}" width="60"></td>
                                 <td>
                                     {{ $item->kode_barang }}<br>

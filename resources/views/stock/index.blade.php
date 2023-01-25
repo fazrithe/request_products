@@ -35,7 +35,7 @@
                             <label class="col-md-4 col-form-label text-md-right">{{ __('Nama Sales') }}</label>
                             <div class="col-md-6">
                                 <div class="input-group">
-                                    <input type="text" name="sales_name" id="sales_name" class="form-control" value="{{ Auth::user()->name }}" placeholder="Nama Sales">
+                                    <input type="text" name="sales_name" id="sales_name" onkeyup="sales_name()" class="form-control" value="{{ Auth::user()->name }}" placeholder="Nama Sales">
                                 </div>
                             </div>
                         </div>
@@ -104,6 +104,7 @@
                                         <input type="hidden" name="update_date" class="form-control" value="{{ $data['login_date'] }}">
                                         <input type="hidden" id="id" class="form-control" name="id">
                                         <input type="number" class="form-control" id="stok" name="stock">
+                                        <input type="text" id="sales_name2" name="sales_name">
                                     </div>
                                     <div class="col-4 text-left">
                                         <label id="satuan"></label>
@@ -245,4 +246,10 @@ const config = { fps: 10, qrbox: 250 };
 html5QrCode.start({ facingMode: { exact: "user"} }, config, qrCodeSuccessCallback);
 
 }
+</script>
+<script>
+    function sales_name(){
+        var x = document.getElementById("sales_name").value;
+        document.getElementById("sales_name2").value = x;
+    }
 </script>
