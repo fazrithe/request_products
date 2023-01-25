@@ -53,7 +53,19 @@
                                 <td>
                                     @if($item->opt_answare)
                                     {{ $item->opt_answare }}<br>
-                                    {{ $item->answare }}
+                                    {{ $item->answare }}<hr>
+                                    <div class="col-6">
+                                        <a class="btn btn-danger" href="{{ route('request.delete') }}"
+                                        onclick="event.preventDefault();
+                                        document.getElementById('request-delete').submit();">
+                                        Selesai
+                                    </a>
+                                        <form id="request-delete" action="{{ route('request.delete') }}" method="POST" style="display: none;">
+                                        @csrf
+                                            <input type="hidden" name="request_id" value="{{ $item->request_id }}">
+                                        </form>
+                                    </div>
+
                                     @endif
                                 </td>
                               </tr>

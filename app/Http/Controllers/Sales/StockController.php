@@ -93,14 +93,14 @@ class StockController extends Controller
         return redirect()->to('showProduct');
     }
 
-          /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function showProduct()
     {
-        $requestProducts = Request_product::select('request_products.sales_id','request_products.total','request_products.request_time','request_products.answare_time','request_products.opt_answare','request_products.answare','products.nama_barang','products.gambar','products.kode_barang','users.name as user_name')
+        $requestProducts = Request_product::select('request_products.id as request_id','request_products.sales_id','request_products.total','request_products.request_time','request_products.answare_time','request_products.opt_answare','request_products.answare','products.nama_barang','products.gambar','products.kode_barang','products.id as product_id','users.name as user_name')
                                             ->where('sales_id',Auth::user()->id)
                                             ->join('products','products.id', '=','request_products.product_id')
                                             ->join('users','users.id', '=','request_products.sales_id')
@@ -112,4 +112,17 @@ class StockController extends Controller
         $total = $total_gudang + $total_toko;
         return view('stock.show', compact('requestProducts','data','datastock','total','total_toko','total_gudang'));
     }
+
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteRequest(Request $request)
+    {
+        $requestProduct = Request_product::find($request->request_id);
+        $requestProduct->delete();
+    }
+
+
 }
