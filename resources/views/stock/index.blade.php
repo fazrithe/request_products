@@ -104,7 +104,7 @@
                                         <input type="hidden" name="update_date" class="form-control" value="{{ $data['login_date'] }}">
                                         <input type="hidden" id="id" class="form-control" name="id">
                                         <input type="number" class="form-control" id="stok" name="stock">
-                                        <input type="text" id="sales_name2" name="sales_name">
+                                        <input type="hidden" id="sales_name2" name="sales_name">
                                     </div>
                                     <div class="col-4 text-left">
                                         <label id="satuan"></label>
