@@ -27,9 +27,10 @@ class GudangController extends Controller
     }
 
     public function index(){
-        $requestProducts = Request_product::select('request_products.id','request_products.sales_id','request_products.total','request_products.request_time','request_products.answare_time','request_products.answare','products.nama_barang')
+        $requestProducts = Request_product::select('request_products.id','request_products.sales_id','request_products.total','request_products.request_time','request_products.answare_time','request_products.answare','products.nama_barang','products.gambar','users.name as user_name')
         ->where('gudang_id',Auth::user()->id)
         ->join('products','products.id', '=','request_products.product_id')
+        ->join('users','users.id', '=','request_products.sales_id')
         ->orderby('request_products.id','DESC')
         ->get();
         $data = Product::find(1);

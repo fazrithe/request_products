@@ -29,6 +29,7 @@
                               <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">Nama Sales</th>
+                                <th></th>
                                 <th scope="col">Permintaan Barang</th>
                                 <th scope="col">Jumlah</th>
                                 <th scope="col">Jam Minta</th>
@@ -40,7 +41,8 @@
                             @foreach ($requestProducts as $index => $item)
                               <tr>
                                 <th scope="row">{{ $index + 1 }}</th>
-                                <td>{{ $item->id }}</td>
+                                <td>{{ $item->user_name }}</td>
+                                <td><img src="https://tianliong.co.id/info/assets/img/products/{{ $item->gambar }}" width="60"></td>
                                 <td>{{ $item->nama_barang }}</td>
                                 <td>{{ $item->total }}</td>
                                 <td>{{ $item->request_time }}</td>
