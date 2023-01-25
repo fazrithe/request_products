@@ -43,11 +43,19 @@
                                 <th scope="row">{{ $index + 1 }}</th>
                                 <td>{{ $item->user_name }}</td>
                                 <td><img src="https://tianliong.co.id/info/assets/img/products/{{ $item->gambar }}" width="60"></td>
-                                <td>{{ $item->nama_barang }}</td>
+                                <td>
+                                    {{ $item->kode_barang }}<br>
+                                    {{ $item->nama_barang }}
+                                </td>
                                 <td>{{ $item->total }}</td>
                                 <td>{{ $item->request_time }}</td>
                                 <td>{{ $item->answare_time }}</td>
-                                <td>{{ $item->answare }}</td>
+                                <td>
+                                    @if($item->opt_answare)
+                                    {{ $item->opt_answare }}<br>
+                                    {{ $item->answare }}
+                                    @endif
+                                </td>
                               </tr>
                             @endforeach
                             </tbody>

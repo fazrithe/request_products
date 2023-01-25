@@ -27,7 +27,7 @@ class GudangController extends Controller
     }
 
     public function index(){
-        $requestProducts = Request_product::select('request_products.id','request_products.sales_id','request_products.total','request_products.request_time','request_products.answare_time','request_products.answare','products.nama_barang','products.gambar','users.name as user_name')
+        $requestProducts = Request_product::select('request_products.id','request_products.sales_id','request_products.total','request_products.request_time','request_products.answare_time','request_products.opt_answare','request_products.answare','products.nama_barang','products.gambar','products.kode_barang','users.name as user_name')
         ->where('gudang_id',Auth::user()->id)
         ->join('products','products.id', '=','request_products.product_id')
         ->join('users','users.id', '=','request_products.sales_id')
@@ -45,6 +45,7 @@ class GudangController extends Controller
     public function update(Request $request){
         $requestProduct = Request_product::find($request->id);
         $requestProduct->answare_time = date('Y-m-d H:i:s');
+        $requestProduct->opt_answare = $request->opt_answare;
         $requestProduct->answare = $request->answare;
         $requestProduct->save();
         return redirect('/showProduct-gudang');

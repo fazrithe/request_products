@@ -43,12 +43,16 @@
                                 <th scope="row">{{ $index + 1 }}</th>
                                 <td>{{ $item->user_name }}</td>
                                 <td><img src="https://tianliong.co.id/info/assets/img/products/{{ $item->gambar }}" width="60"></td>
-                                <td>{{ $item->nama_barang }}</td>
+                                <td>
+                                    {{ $item->kode_barang }}<br>
+                                    {{ $item->nama_barang }}
+                                </td>
                                 <td>{{ $item->total }}</td>
                                 <td>{{ $item->request_time }}</td>
                                 <td>{{ $item->answare_time }}</td>
                                 <td>
-                                @if($item->answare)
+                                @if($item->opt_answare)
+                                {{ $item->opt_answare }}<br>
                                 {{ $item->answare }}
                                 @else
                                 <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#modalJawab{{ $item->id }}">
@@ -130,6 +134,13 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Jawaban</label>
+                        <div class="form-group">
+                            <select name="opt_answare" class="form-control">
+                                <option>Tidak ada STOK</option>
+                                <option>Diturunkan sesuai permintaan</option>
+                                <option>Diturunkan sebagian</option>
+                            </select>
+                        </div>
                         <div>
                             <input type="hidden" name="id" id="request-id" value="{{ $item->id }}">
                             <textarea name="answare" class="form-control"></textarea>
