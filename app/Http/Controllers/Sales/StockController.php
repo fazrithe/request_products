@@ -123,7 +123,7 @@ class StockController extends Controller
         $requestProduct = Request_product::find($request->request_id);
         $requestProduct->delete();
 
-        return redirect('/showProduct')
+        return redirect('/showProduct');
     }
 
 
