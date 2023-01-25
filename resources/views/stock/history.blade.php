@@ -77,9 +77,8 @@
                         <div id="jumlah" style="display: block">
                             <div class="row">
                                 <div class="col-6">
-                                    <a href="{{ url('stocks') }}" class="btn btn-primary">Kembali</a>
+                                    <a href="{{ url('showProduct') }}" class="btn btn-primary">Kembali</a>
 
-                                    <a href="{{ url('history') }}" class="btn btn-primary">History</a>
                                 </div>
                                 <div class="col-6">
                                     <a class="btn btn-danger" href="{{ route('logout') }}"

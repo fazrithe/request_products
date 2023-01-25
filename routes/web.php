@@ -49,6 +49,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('productExport', [ProductController::class, 'export'])->name('product.export');
     Route::post('productShowDate', [ProductController::class, 'index'])->name('product.showDate');
     Route::get('stocks', [StockController::class, 'index'])->name('stocks');
+    Route::get('history', [StockController::class, 'history'])->name('history');
     Route::post('searchProduct', [StockController::class, 'searchProduct'])->name('product.search');
     Route::post('updateProduct', [StockController::class, 'updateProduct'])->name('product.update');
     Route::get('showProduct', [StockController::class, 'showProduct'])->name('product.show');

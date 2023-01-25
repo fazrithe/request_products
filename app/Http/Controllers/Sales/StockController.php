@@ -126,5 +126,27 @@ class StockController extends Controller
         return redirect('/showProduct');
     }
 
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function history()
+    {
+        $requestProducts = Request_product::select('request_products.id as request_id','request_products.sales_id','request_products.total','request_products.request_time','request_products.answare_time','request_products.opt_answare','request_products.answare','products.nama_barang','products.gambar','products.kode_barang','products.id as product_id','users.name as user_name')
+                                            ->where('sales_id',Auth::user()->id)
+                                            ->whereNotNull('deleted_at')
+                                            ->join('products','products.id', '=','request_products.product_id')
+                                            ->join('users','users.id', '=','request_products.sales_id')
+                                            ->withTrashed()
+                                            ->get();
+        $data = Product::find(1);
+        $datastock = Sales_stock::where('product_id',1)->first();
+        $total_toko = $datastock->stok_toko1 + $datastock->stok_toko2 + $datastock->stok_toko3 + $datastock->stok_toko4 + $datastock->stok_toko4;
+        $total_gudang = $datastock->stok_gudang1 + $datastock->stok_gudang2 + $datastock->stok_gudang3 + $datastock->stok_gudang4 + $datastock->stok_gudang4;
+        $total = $total_gudang + $total_toko;
+        return view('stock.history', compact('requestProducts','data','datastock','total','total_toko','total_gudang'));
+    }
+
 
 }
