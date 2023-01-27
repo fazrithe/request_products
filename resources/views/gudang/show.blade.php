@@ -48,7 +48,8 @@
                                     {{ $item->user_name }}
                                     @endif
                                 </td>
-                                <td><img src="https://tianliong.co.id/info/assets/img/products/{{ $item->gambar }}" width="60"></td>
+                                <td><a href="#" data-toggle="modal" data-target="#imageModal{{ $item->id }}">
+                                    <img src="https://tianliong.co.id/info/assets/img/products/{{ $item->gambar }}" width="60"></a></td>
                                 <td>
                                     {{ $item->kode_barang }}<br>
                                     {{ $item->nama_barang }}
@@ -165,3 +166,36 @@
         </div>
     </div>
     @endforeach
+
+<!-- Modal -->
+@foreach ($requestProducts as $index => $item)
+<div class="modal fade" id="imageModal{{ $item->id }}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                    </h5>
+                    <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">
+                            ×
+                        </span>
+                    </button>
+                </div>
+                <form method="POST" action="{{ route('request.update') }}">
+                @csrf
+                <div class="modal-body">
+                    <img src="https://tianliong.co.id/info/assets/img/products/{{ $item->gambar }}"></a></td>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+                </form>
+            </div>
+        </div>
+</div>
+@endforeach

@@ -48,7 +48,10 @@
                                     {{ $item->user_name }}
                                     @endif
                                 </td>
-                                <td><img src="https://tianliong.co.id/info/assets/img/products/{{ $item->gambar }}" width="60"></td>
+                                <td>
+                                    <a href="#" data-toggle="modal" data-target="#imageModal{{ $item->id }}">
+                                        <img src="https://tianliong.co.id/info/assets/img/products/{{ $item->gambar }}" width="60"></a></td>
+
                                 <td>
                                     {{ $item->kode_barang }}<br>
                                     {{ $item->nama_barang }}
@@ -114,6 +117,24 @@
   </footer>
 </div>
 </body>
+<link rel="stylesheet" href=
+"https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity=
+"sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+        crossorigin="anonymous">
+    <script src=
+"https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity=
+"sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous">
+    </script>
+    <script src=
+"https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity=
+"sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous">
+    </script>
+
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous">
@@ -155,3 +176,35 @@
           });
        });
 </script>
+<!-- Modal -->
+@foreach ($requestProducts as $index => $item)
+<div class="modal fade" id="imageModal{{ $item->id }}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                    </h5>
+                    <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">
+                            ×
+                        </span>
+                    </button>
+                </div>
+                <form method="POST" action="{{ route('request.update') }}">
+                @csrf
+                <div class="modal-body">
+                    <img src="https://tianliong.co.id/info/assets/img/products/{{ $item->gambar }}"></a></td>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+                </form>
+            </div>
+        </div>
+</div>
+@endforeach
