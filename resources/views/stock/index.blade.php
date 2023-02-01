@@ -4,6 +4,17 @@
     @include('layouts.head');
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"/>
+    <style>
+ .select2-selection__rendered {
+    line-height: 31px !important;
+}
+.select2-container .select2-selection--single {
+    height: 35px !important;
+}
+.select2-selection__arrow {
+    height: 34px !important;
+}
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 </head>
@@ -46,12 +57,13 @@
                         </div>
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">{{ __('Kode Barang') }}</label>
-                            <div class="col-md-6">
-                                <div class="form-group col-3">
-                                    <select class="form-control search-barang" id="kode_barang" style="width:300px;" name="kode_barang"></select>
-
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <select class="form-control search-barang" id="kode_barang" style="width: 220px; height: 200px" name="kode_barang"></select>
                                 </div>
-                                <div class="input-group">
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
                                     <input type="hidden" name="area" id="area" class="form-control" value="{{ $data['area'] }}">
                                     <input type="hidden" name="login_date" id="login_date" class="form-control" value="{{ $data['login_date'] }}">
                                     {{-- <input type="text" name="kode_barang" id="kode_barang" class="form-control" placeholder="Cari Kode Barang/ Barcode"> --}}
@@ -64,6 +76,8 @@
                                         </button>
                                     </div>
                                 </div>
+                            </div>
+
                             </div>
                         </div>
                         <div align="center" id="or">
