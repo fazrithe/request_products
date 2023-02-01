@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
     @include('layouts.head');
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -43,11 +47,14 @@
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">{{ __('Kode Barang') }}</label>
                             <div class="col-md-6">
+                                <div class="form-group col-3">
+                                    <select class="form-control search-barang" id="kode_barang" style="width:300px;" name="kode_barang"></select>
 
+                                </div>
                                 <div class="input-group">
                                     <input type="hidden" name="area" id="area" class="form-control" value="{{ $data['area'] }}">
                                     <input type="hidden" name="login_date" id="login_date" class="form-control" value="{{ $data['login_date'] }}">
-                                    <input type="text" name="kode_barang" id="kode_barang" class="form-control" placeholder="Cari Kode Barang/ Barcode">
+                                    {{-- <input type="text" name="kode_barang" id="kode_barang" class="form-control" placeholder="Cari Kode Barang/ Barcode"> --}}
                                     <div class="input-group-append">
                                       <button class="btn btn-primary" id="btnsearch" type="button">
                                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -146,10 +153,7 @@
   </footer>
 </div>
 </body>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-      crossorigin="anonymous">
-</script>
+
 <script>
     jQuery(document).ready(function(){
        jQuery('#btnsearch').click(function(e){
@@ -252,4 +256,28 @@ html5QrCode.start({ facingMode: { exact: "user"} }, config, qrCodeSuccessCallbac
         var x = document.getElementById("sales_name").value;
         document.getElementById("sales_name2").value = x;
     }
+</script>
+<script type="text/javascript">
+    var path = "{{ route('product.select') }}";
+
+    $('.search-barang').select2({
+        placeholder: 'Select an kode barang',
+        ajax: {
+          url: path,
+          dataType: 'json',
+          delay: 250,
+          processResults: function (data) {
+            return {
+              results:  $.map(data, function (item) {
+                    return {
+                        text: item.kode_barang,
+                        id: item.kode_barang
+                    }
+                })
+            };
+          },
+          cache: true
+        }
+      });
+
 </script>

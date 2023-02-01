@@ -149,5 +149,16 @@ class StockController extends Controller
         return view('stock.history', compact('requestProducts','data','datastock','total','total_toko','total_gudang'));
     }
 
+    public function getProducts(Request $request) {
+        $data = [];
+
+        if($request->filled('q')){
+            $data = product::select("nama_barang", "kode_barang")
+                        ->where('kode_barang', 'LIKE', '%'. $request->get('q'). '%')
+                        ->get();
+        }
+
+        return response()->json($data);
+    }
 
 }
