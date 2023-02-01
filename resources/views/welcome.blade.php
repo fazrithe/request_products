@@ -18,7 +18,7 @@
                 @endif
                 <div class="card-body">
                     <div class="col mb-4">
-                        <div class="text-center text-bold">STOCK OPNAME TOKO</div>
+                        <div class="text-center text-bold">APLIKASI PERMINTAAN BARANG</div>
                     </div>
                     <form method="POST" action="{{ route('actionlogin') }}">
                         @csrf
