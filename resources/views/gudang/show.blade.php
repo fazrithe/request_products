@@ -7,6 +7,18 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+
+.sticky {
+    position: fixed;
+  right: 20px;
+  top: 20px;
+}
+.toast:not(.showing):not(.show) {
+  display: none !important;
+}
+
+    </style>
 </head>
 <body>
 <div class="wrapper">
@@ -205,7 +217,7 @@
 </div>
 @endforeach
 
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-delay="5000" style="position: absolute; top: 0; center:0; right: 0; width:200%" data-autohide="false">
+<div class="toast sticky" id="toast" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-delay="5000"  style="position: fixed;top: 0; right: 0; z-index:1;" data-autohide="false">
     <div class="toast-header">
         <span class="rounded mr-2 bg-danger" style="width: 15px;height: 15px"></span>
 
@@ -219,7 +231,20 @@
         <h4><font color="red">Mohon untuk segera di jawab</font></h4>
     </div>
 </div>
+<script>
+    window.onscroll = function() {myFunction()};
 
+    var header = document.getElementById("toast");
+    var sticky = header.offsetTop;
+
+    function myFunction() {
+      if (window.pageYOffset > sticky) {
+        header.classList.add("sticky");
+      } else {
+        header.classList.remove("sticky");
+      }
+    }
+    </script>
 <script>
     setInterval(function(){
 		showNotif()
