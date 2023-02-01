@@ -59,8 +59,7 @@
                                 <td>{{ $item->answare_time }}</td>
                                 <td>
                                 @if($item->opt_answare)
-                                {{ $item->opt_answare }}<br>
-                                {{ $item->answare }}
+                                {{ $item->opt_answare }}
                                 @else
                                 <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#modalJawab{{ $item->id }}">
                                     Jawab
@@ -141,16 +140,17 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Jawaban</label>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <select name="opt_answare" class="form-control">
                                 <option>Tidak ada STOK</option>
                                 <option>Diturunkan sesuai permintaan</option>
                                 <option>Diturunkan sebagian</option>
                             </select>
-                        </div>
+                        </div> --}}
                         <div>
                             <input type="hidden" name="id" id="request-id" value="{{ $item->id }}">
-                            <textarea name="answare" class="form-control"></textarea>
+                            <input type="hidden" name="total" value="{{ $item->total }}">
+                            <input type="number" name="answare" class="form-control">
                         </div>
                     </div>
                 </div>

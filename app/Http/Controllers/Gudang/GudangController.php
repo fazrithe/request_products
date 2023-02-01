@@ -43,10 +43,29 @@ class GudangController extends Controller
     }
 
     public function update(Request $request){
+
+        $ans = $request->answare;
+        $total = $request->total;
+        if($ans == $total){
+            $opt_answare = "Di turunkan sesuai permintaan ".$ans." unit";
+        }
+
+        if($ans < $total){
+            $opt_answare = "Di turunkan sebagian ".$ans." unit";
+        }
+
+        if($ans == 0){
+            $opt_answare = "Tidak ada stock";
+        }
+
+        if($ans > $total){
+            return redirect('/showProduct-gudang');
+        }
+
         $requestProduct = Request_product::find($request->id);
         $requestProduct->answare_time = date('Y-m-d H:i:s');
-        $requestProduct->opt_answare = $request->opt_answare;
-        $requestProduct->answare = $request->answare;
+        $requestProduct->opt_answare = $opt_answare;
+        $requestProduct->answare = $total;
         $requestProduct->save();
         return redirect('/showProduct-gudang');
     }
