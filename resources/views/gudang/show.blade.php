@@ -2,6 +2,11 @@
 <html lang="en">
 <head>
     @include('layouts.head');
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -199,3 +204,30 @@
         </div>
 </div>
 @endforeach
+
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-delay="5000" style="position: absolute; top: 0; center:0; right: 0; width:200%" data-autohide="false">
+    <div class="toast-header">
+        <span class="rounded mr-2 bg-danger" style="width: 15px;height: 15px"></span>
+
+        <strong class="mr-auto">Permintaan Barang</strong>
+        <small></small>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="toast-body">
+        <h4><font color="red">Mohon untuk segera di jawab</font></h4>
+    </div>
+</div>
+
+<script>
+    setInterval(function(){
+		showNotif()
+	}, 5000);
+
+    function showNotif(){
+        $('.toast').toast('show');
+        console.log("modal");
+    }
+
+</script>
