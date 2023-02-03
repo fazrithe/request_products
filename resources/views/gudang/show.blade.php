@@ -165,6 +165,14 @@
                     </div>
                     <div class="row">
                         <div class="col-4">
+                            Kode Barang
+                        </div>
+                        <div class="col-4">
+                            {{$item->kode_barang}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
                             Jumlah /Satuan
                         </div>
                         <div class="col-4">
@@ -300,6 +308,14 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
+                        Kode Barang
+                    </div>
+                    <div class="col-4">
+                        <span id="kode_barang-modal"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
                         Jumlah /Satuan
                     </div>
                     <div class="col-4">
@@ -391,6 +407,7 @@
                 console.log(data)
                 if(data.id){
                 document.getElementById("total-permintaan").innerHTML = data.total;
+                document.getElementById("kode_barang-modal").innerHTML = data.kode_barang;
                 document.getElementById("answare-id-ans").value = data.id;
                 document.getElementById("total-ans").value = data.total;
                 document.getElementById("satuan-ans").value = data.satuan;
