@@ -218,8 +218,7 @@
 </div>
 @endforeach
 
-@foreach ($requestProducts as $index => $item)
-<div class="toast sticky" id="toast{{$item->id}}" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-delay="5000"  style="position: fixed;top: 0; right: 0; z-index:1;" data-autohide="false">
+<div class="toast sticky" id="toast" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-delay="5000"  style="position: fixed;top: 0; right: 0; z-index:1;" data-autohide="false">
     <div class="toast-header">
         <span class="rounded mr-2 bg-danger" style="width: 15px;height: 15px"></span>
 
@@ -230,11 +229,55 @@
         </button>
     </div>
     <div class="toast-body">
-        <h4 id="answare">Jawab Permintaan kode barang {{$item->kode_barang}}</h4>
-        <div id="btnAnsware"><a href="#" class="btn btn-danger" data-toggle="modal" data-target="#modalJawab{{$item->id}}">Jawab</a></div>
+        <h4 id="answare"></h4>
+        <div id="btnAnsware"></div>
     </div>
 </div>
-@endforeach
+<div class="modal fade" id="modalJawabAns">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Jawab Permintaan
+                </h5>
+                <button type="button" class="close"
+                    data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        ×
+                    </span>
+                </button>
+            </div>
+            <form method="POST" action="{{ route('request.update') }}">
+            @csrf
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Jawaban</label>
+                    {{-- <div class="form-group">
+                        <select name="opt_answare" class="form-control">
+                            <option>Tidak ada STOK</option>
+                            <option>Diturunkan sesuai permintaan</option>
+                            <option>Diturunkan sebagian</option>
+                        </select>
+                    </div> --}}
+                    Total Permintaan <span id="total-permintaan"></span><br>
+                    <div>
+                        <input type="hidden" name="id" id="answare-id-ans" value="">
+                        <input type="hidden" name="total" id="total-ans" value="">
+                        <input type="number" name="answare" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                    data-dismiss="modal">
+                    Close
+                </button>
+                <input type="submit" class="btn btn-primary" value="Save">
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
 <script>
     window.onscroll = function() {myFunction()};
 
@@ -262,9 +305,14 @@
             success: function(data) {
                 console.log(data.id)
                 if(data.id){
+                document.getElementById("total-permintaan").innerHTML = data.total;
+                document.getElementById("answare-id-ans").value = data.id;
+                document.getElementById("total-ans").value = data.total;
+                document.getElementById("answare").innerHTML = "Jawab Permintaan kode barang "+data.kode_barang;
+                document.getElementById("btnAnsware").innerHTML = "<a href='#'' class='btn btn-danger' data-toggle='modal' data-target='#modalJawabAns'>Jawab</a>";
                 let ding = new Audio('https://res.cloudinary.com/dxfq3iotg/video/upload/v1557233563/warning.mp3');
 	            ding.play();
-                $('#toast'+data.id).toast('show');
+                $('.toast').toast('show');
                 }
             }
             });
