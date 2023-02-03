@@ -119,9 +119,9 @@ class StockController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function deleteRequest(Request $request)
+    public function deleteRequest($id)
     {
-        $requestProduct = Request_product::find($request->request_id);
+        $requestProduct = Request_product::find($id);
         $requestProduct->delete();
 
         return redirect('/showProduct');

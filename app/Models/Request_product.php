@@ -17,6 +17,6 @@ class Request_product extends Model
      * @var array
      */
     protected $fillable = [
-        'product_id','sales_id','gudang_id','total','updated_at','created_at'
+        'id','product_id','sales_id','gudang_id','total','updated_at','created_at','deleted_at'
     ];
 }

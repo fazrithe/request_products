@@ -168,6 +168,7 @@
                         <div>
                             <input type="hidden" name="id" id="request-id" value="{{ $item->id }}">
                             <input type="hidden" name="total" value="{{ $item->total }}">
+                            <input type="text" name="satuan" value="{{$item->satuan}}">
                             <input type="number" name="answare" class="form-control">
                         </div>
                     </div>
@@ -263,6 +264,7 @@
                     <div>
                         <input type="hidden" name="id" id="answare-id-ans" value="">
                         <input type="hidden" name="total" id="total-ans" value="">
+                        <input type="hidden" name="satuan" id="satuan-ans" value="">
                         <input type="number" name="answare" class="form-control">
                     </div>
                 </div>
@@ -308,6 +310,7 @@
                 document.getElementById("total-permintaan").innerHTML = data.total;
                 document.getElementById("answare-id-ans").value = data.id;
                 document.getElementById("total-ans").value = data.total;
+                document.getElementById("satuan-ans").value = data.satuan;
                 document.getElementById("answare").innerHTML = "Jawab Permintaan kode barang "+data.kode_barang;
                 document.getElementById("btnAnsware").innerHTML = "<a href='#'' class='btn btn-danger' data-toggle='modal' data-target='#modalJawabAns'>Jawab</a>";
                 let ding = new Audio('https://res.cloudinary.com/dxfq3iotg/video/upload/v1557233563/warning.mp3');

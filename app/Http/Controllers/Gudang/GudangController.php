@@ -27,7 +27,7 @@ class GudangController extends Controller
     }
 
     public function index(){
-        $requestProducts = Request_product::select('request_products.id','request_products.sales_id','request_products.total','request_products.request_time','request_products.answare_time','request_products.opt_answare','request_products.answare','products.nama_barang','products.gambar','products.kode_barang','users.name as user_name','request_products.sales_name')
+        $requestProducts = Request_product::select('request_products.id','request_products.sales_id','request_products.total','request_products.request_time','request_products.answare_time','request_products.opt_answare','request_products.answare','products.nama_barang','products.gambar','products.kode_barang','products.satuan','users.name as user_name','request_products.sales_name')
         ->where('gudang_id',Auth::user()->id)
         ->join('products','products.id', '=','request_products.product_id')
         ->join('users','users.id', '=','request_products.sales_id')
@@ -46,12 +46,13 @@ class GudangController extends Controller
 
         $ans = $request->answare;
         $total = $request->total;
+        $satuan = $request->satuan;
         if($ans == $total){
-            $opt_answare = "Di turunkan sesuai permintaan ".$ans." unit";
+            $opt_answare = "Di turunkan sesuai permintaan ".$ans." ".$satuan;
         }
 
         if($ans < $total){
-            $opt_answare = "Di turunkan sebagian ".$ans." unit";
+            $opt_answare = "Di turunkan sebagian ".$ans." ".$satuan;
         }
 
         if($ans == 0){
@@ -71,7 +72,7 @@ class GudangController extends Controller
     }
 
     public function getAnsware(){
-        $ans = Request_product::select('request_products.id','request_products.sales_id','request_products.total','request_products.request_time','request_products.answare_time','request_products.opt_answare','request_products.answare','products.nama_barang','products.gambar','products.kode_barang','request_products.sales_name')
+        $ans = Request_product::select('request_products.id','request_products.sales_id','request_products.total','request_products.request_time','request_products.answare_time','request_products.opt_answare','request_products.answare','products.nama_barang','products.gambar','products.kode_barang','products.satuan','request_products.sales_name')
         ->where('answare', null)
         ->join('products','products.id', '=','request_products.product_id')
         ->first();

@@ -50,7 +50,7 @@
                             <label class="col-md-4 col-form-label text-md-right">{{ __('Nama Sales') }}</label>
                             <div class="col-md-6">
                                 <div class="input-group">
-                                    <input type="text" name="sales_name" id="sales_name" onkeyup="sales_name()" class="form-control" value="{{ Auth::user()->name }}" placeholder="Nama Sales">
+                                    <input type="text" name="sales_name" id="sales_name" onkeyup="sales_name()" class="form-control" value="" placeholder="Nama Sales">
                                 </div>
                             </div>
                         </div>
@@ -266,6 +266,13 @@ html5QrCode.start({ facingMode: { exact: "user"} }, config, qrCodeSuccessCallbac
 }
 </script>
 <script>
+    var salesName = document.getElementById("sales_name").value;
+    var btn = document.getElementById("submit-permintaan");
+        if(salesName < 1){
+            btn.style.display = "none";
+        }else{
+            btn.style.display = "block";
+    }
     function sales_name(){
         var x = document.getElementById("sales_name").value;
         document.getElementById("sales_name2").value = x;
