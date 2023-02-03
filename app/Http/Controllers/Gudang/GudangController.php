@@ -27,7 +27,7 @@ class GudangController extends Controller
     }
 
     public function index(){
-        $requestProducts = Request_product::select('request_products.id','request_products.sales_id','request_products.total','request_products.request_time','request_products.answare_time','request_products.opt_answare','request_products.answare','products.nama_barang','products.gambar','products.kode_barang','products.satuan as satuan','users.name as user_name','request_products.sales_name')
+        $requestProducts = Request_product::select('request_products.id','request_products.sales_id','request_products.total','request_products.request_time','request_products.answare_time','request_products.opt_answare','request_products.answare','products.nama_barang','products.gambar','products.kode_barang','products.nama_barang','products.satuan as satuan','products.merk as merk','users.name as user_name','request_products.sales_name')
         ->where('gudang_id',Auth::user()->id)
         ->join('products','products.id', '=','request_products.product_id')
         ->join('users','users.id', '=','request_products.sales_id')

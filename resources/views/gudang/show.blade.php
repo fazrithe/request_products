@@ -159,7 +159,7 @@
                         <div class="col-4">
                             Sales
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             {{$item->sales_name}}
                         </div>
                     </div>
@@ -167,15 +167,31 @@
                         <div class="col-4">
                             Kode Barang
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             {{$item->kode_barang}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            Deskripsi
+                        </div>
+                        <div class="col-6">
+                            {{$item->nama_barang}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            Merk
+                        </div>
+                        <div class="col-6">
+                            {{$item->merk}}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-4">
                             Jumlah /Satuan
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             {{$total}} /{{$item->satuan}}
                         </div>
                     </div>
@@ -183,7 +199,7 @@
                         <div class="col-4">
                             Jam Minta
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             {{$item->request_time}}
                         </div>
                     </div>
@@ -191,7 +207,7 @@
                         <div class="col-4">
 
                         </div>
-                        <div class="col-4">
+                        <div class="col-5">
                             <img src="https://tianliong.co.id/info/assets/img/products/{{ $item->gambar }}" width="100">
                         </div>
                     </div>
@@ -199,7 +215,7 @@
                         <div class="col-4">
                             Total Permintaan
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             {{ $item->total }}
                         </div>
                     </div>
@@ -302,7 +318,7 @@
                     <div class="col-4">
                         Sales
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <span id="sales_name-modal"></span>
                     </div>
                 </div>
@@ -310,15 +326,31 @@
                     <div class="col-4">
                         Kode Barang
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <span id="kode_barang-modal"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        Deskripsi
+                    </div>
+                    <div class="col-6">
+                        <span id="nama_barang-modal"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        Merk
+                    </div>
+                    <div class="col-6">
+                        <span id="merk_barang-modal"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-4">
                         Jumlah /Satuan
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <span id="total-modal"></span> /<span id="satuan-modal"></span>
                     </div>
                 </div>
@@ -326,7 +358,7 @@
                     <div class="col-4">
                         Jam Minta
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <span id="request_time-modal"></span>
                     </div>
                 </div>
@@ -334,7 +366,7 @@
                     <div class="col-4">
 
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <div id="gambar-modal"></div>
                     </div>
                 </div>
@@ -342,7 +374,7 @@
                     <div class="col-4">
                         Total Permintaan
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <span id="total-permintaan"></span>
                     </div>
                 </div>
@@ -408,6 +440,8 @@
                 if(data.id){
                 document.getElementById("total-permintaan").innerHTML = data.total;
                 document.getElementById("kode_barang-modal").innerHTML = data.kode_barang;
+                document.getElementById("nama_barang-modal").innerHTML = data.nama_barang;
+                document.getElementById("merk_barang-modal").innerHTML = data.merk;
                 document.getElementById("answare-id-ans").value = data.id;
                 document.getElementById("total-ans").value = data.total;
                 document.getElementById("satuan-ans").value = data.satuan;
