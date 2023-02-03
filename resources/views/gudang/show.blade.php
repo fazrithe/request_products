@@ -218,7 +218,8 @@
 </div>
 @endforeach
 
-<div class="toast sticky" id="toast" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-delay="5000"  style="position: fixed;top: 0; right: 0; z-index:1;" data-autohide="false">
+@foreach ($requestProducts as $index => $item)
+<div class="toast sticky" id="toast{{$item->id}}" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-delay="5000"  style="position: fixed;top: 0; right: 0; z-index:1;" data-autohide="false">
     <div class="toast-header">
         <span class="rounded mr-2 bg-danger" style="width: 15px;height: 15px"></span>
 
@@ -229,10 +230,11 @@
         </button>
     </div>
     <div class="toast-body">
-        <h4 id="answare"></h4>
-        <div id="btnAnsware"></div>
+        <h4 id="answare">Jawab Permintaan kode barang {{$item->kode_barang}}</h4>
+        <div id="btnAnsware"><a href="#" class="btn btn-danger" data-toggle="modal" data-target="#modalJawab{{$item->id}}">Jawab</a></div>
     </div>
 </div>
+@endforeach
 <script>
     window.onscroll = function() {myFunction()};
 
@@ -260,11 +262,9 @@
             success: function(data) {
                 console.log(data.id)
                 if(data.id){
-                document.getElementById("answare").innerHTML = "Jawab Permintaan kode barang "+data.kode_barang;
-                document.getElementById("btnAnsware").innerHTML = "<a href='#'' class='btn btn-danger' data-toggle='modal' data-target='#modalJawab"+data.id+"'>Jawab</a>";
                 let ding = new Audio('https://res.cloudinary.com/dxfq3iotg/video/upload/v1557233563/warning.mp3');
 	            ding.play();
-                $('.toast').toast('show');
+                $('#toast'+data.id).toast('show');
                 }
             }
             });
