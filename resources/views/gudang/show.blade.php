@@ -183,7 +183,7 @@
         </div>
     </div>
     @endforeach
-
+    <audio id="mySound" src="https://res.cloudinary.com/dxfq3iotg/video/upload/v1557233563/warning.mp3"></audio>
 <!-- Modal -->
 @foreach ($requestProducts as $index => $item)
 <div class="modal fade" id="imageModal{{ $item->id }}">
@@ -228,7 +228,8 @@
         </button>
     </div>
     <div class="toast-body">
-        <h4><font color="red">Mohon untuk segera di jawab</font></h4>
+        <h4 id="answare"></h4>
+        <div id="btnAnsware"></div>
     </div>
 </div>
 <script>
@@ -251,8 +252,21 @@
 	}, 5000);
 
     function showNotif(){
-        $('.toast').toast('show');
-        console.log("modal");
+        $.ajax({
+            url: "{{ route('get.answare') }}",
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                console.log(data.id)
+                if(data.id){
+                document.getElementById("answare").innerHTML = "Jawab Permintaan kode barang "+data.kode_barang;
+                document.getElementById("btnAnsware").innerHTML = "<a href='#'' class='btn btn-danger' data-toggle='modal' data-target='#modalJawab"+data.id+"'>Jawab</a>";
+                let ding = new Audio('https://res.cloudinary.com/dxfq3iotg/video/upload/v1557233563/warning.mp3');
+	            ding.play();
+                $('.toast').toast('show');
+                }
+            }
+            });
     }
 
 </script>

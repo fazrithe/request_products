@@ -57,4 +57,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('slectProduct', [StockController::class,'getProducts'])->name('product.select');
     Route::get('showProduct-gudang', [GudangController::class, 'index'])->name('product.show.gudang');
     Route::post('updateRequest', [GudangController::class, 'update'])->name('request.update');
+    Route::get('getAnsware', [GudangController::class, 'getAnsware'])->name('get.answare');
 });

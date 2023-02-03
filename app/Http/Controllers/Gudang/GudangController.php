@@ -69,4 +69,12 @@ class GudangController extends Controller
         $requestProduct->save();
         return redirect('/showProduct-gudang');
     }
+
+    public function getAnsware(){
+        $ans = Request_product::select('request_products.id','request_products.sales_id','request_products.total','request_products.request_time','request_products.answare_time','request_products.opt_answare','request_products.answare','products.nama_barang','products.gambar','products.kode_barang','request_products.sales_name')
+        ->where('answare', null)
+        ->join('products','products.id', '=','request_products.product_id')
+        ->first();
+        return response()->json($ans);
+    }
 }
