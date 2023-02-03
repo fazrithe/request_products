@@ -136,7 +136,7 @@
                                     <div class="col">
                                         <a href="#" class="btn btn-success">Scan</a>
                                     </div>
-                                    <div class="col">
+                                    <div class="col" id="submit-permintaan">
                                         <Button class="btn btn-primary">Submit</Button>
                                     </div>
                                 </div>
@@ -269,6 +269,12 @@ html5QrCode.start({ facingMode: { exact: "user"} }, config, qrCodeSuccessCallbac
     function sales_name(){
         var x = document.getElementById("sales_name").value;
         document.getElementById("sales_name2").value = x;
+        var btn = document.getElementById("submit-permintaan");
+        if(x < 1){
+            btn.style.display = "none";
+        }else{
+            btn.style.display = "block";
+        }
     }
 </script>
 <script type="text/javascript">
