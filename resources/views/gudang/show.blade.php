@@ -164,6 +164,7 @@
                                 <option>Diturunkan sebagian</option>
                             </select>
                         </div> --}}
+                        Total Permintaan {{ $item->total }}
                         <div>
                             <input type="hidden" name="id" id="request-id" value="{{ $item->id }}">
                             <input type="hidden" name="total" value="{{ $item->total }}">
