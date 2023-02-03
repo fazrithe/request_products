@@ -59,3 +59,4 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('updateRequest', [GudangController::class, 'update'])->name('request.update');
     Route::get('getAnsware', [GudangController::class, 'getAnsware'])->name('get.answare');
 });
+Route::get('data-request', [StockController::class, 'dataRequest'])->name('data.request');

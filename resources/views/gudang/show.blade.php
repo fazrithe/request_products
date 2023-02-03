@@ -48,7 +48,7 @@
                                 <th scope="col">Nama Sales</th>
                                 <th></th>
                                 <th scope="col">Permintaan Barang</th>
-                                <th scope="col">Jumlah</th>
+                                <th scope="col">Jumlah / satuan</th>
                                 <th scope="col">Jam Minta</th>
                                 <th scope="col">Jam Selesai</th>
                                 <th scope="col">Jawaban Gudang</th>
@@ -71,7 +71,7 @@
                                     {{ $item->kode_barang }}<br>
                                     {{ $item->nama_barang }}
                                 </td>
-                                <td>{{ $item->total }}</td>
+                                <td>{{ $item->total }} /{{$item->satuan}}</td>
                                 <td>{{ $item->request_time }}</td>
                                 <td>{{ $item->answare_time }}</td>
                                 <td>
@@ -155,6 +155,46 @@
                 <form method="POST" action="{{ route('request.update') }}">
                 @csrf
                 <div class="modal-body">
+                    <div class="row">
+                        <div class="col-4">
+                            Sales
+                        </div>
+                        <div class="col-4">
+                            {{$item->sales_name}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            Jumlah /Satuan
+                        </div>
+                        <div class="col-4">
+                            {{$total}} /{{$item->satuan}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            Jam Minta
+                        </div>
+                        <div class="col-4">
+                            {{$item->request_time}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+
+                        </div>
+                        <div class="col-4">
+                            <img src="https://tianliong.co.id/info/assets/img/products/{{ $item->gambar }}" width="100">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            Total Permintaan
+                        </div>
+                        <div class="col-4">
+                            {{ $item->total }}
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label>Jawaban</label>
                         {{-- <div class="form-group">
@@ -164,11 +204,10 @@
                                 <option>Diturunkan sebagian</option>
                             </select>
                         </div> --}}
-                        Total Permintaan {{ $item->total }}
                         <div>
                             <input type="hidden" name="id" id="request-id" value="{{ $item->id }}">
                             <input type="hidden" name="total" value="{{ $item->total }}">
-                            <input type="text" name="satuan" value="{{$item->satuan}}">
+                            <input type="hidden" name="satuan" value="{{$item->satuan}}">
                             <input type="number" name="answare" class="form-control">
                         </div>
                     </div>
@@ -251,6 +290,46 @@
             <form method="POST" action="{{ route('request.update') }}">
             @csrf
             <div class="modal-body">
+                <div class="row">
+                    <div class="col-4">
+                        Sales
+                    </div>
+                    <div class="col-4">
+                        <span id="sales_name-modal"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        Jumlah /Satuan
+                    </div>
+                    <div class="col-4">
+                        <span id="total-modal"></span> /<span id="satuan-modal"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        Jam Minta
+                    </div>
+                    <div class="col-4">
+                        <span id="request_time-modal"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+
+                    </div>
+                    <div class="col-4">
+                        <div id="gambar-modal"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        Total Permintaan
+                    </div>
+                    <div class="col-4">
+                        <span id="total-permintaan"></span>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label>Jawaban</label>
                     {{-- <div class="form-group">
@@ -260,7 +339,6 @@
                             <option>Diturunkan sebagian</option>
                         </select>
                     </div> --}}
-                    Total Permintaan <span id="total-permintaan"></span><br>
                     <div>
                         <input type="hidden" name="id" id="answare-id-ans" value="">
                         <input type="hidden" name="total" id="total-ans" value="">
@@ -305,12 +383,17 @@
             type: 'GET',
             dataType: 'json',
             success: function(data) {
-                console.log(data.id)
+                console.log(data)
                 if(data.id){
                 document.getElementById("total-permintaan").innerHTML = data.total;
                 document.getElementById("answare-id-ans").value = data.id;
                 document.getElementById("total-ans").value = data.total;
                 document.getElementById("satuan-ans").value = data.satuan;
+                document.getElementById("sales_name-modal").innerHTML = data.sales_name;
+                document.getElementById("total-modal").innerHTML = data.total;
+                document.getElementById("satuan-modal").innerHTML = data.satuan;
+                document.getElementById("request_time-modal").innerHTML = data.request_time;
+                document.getElementById("gambar-modal").innerHTML = "<img src='https://tianliong.co.id/info/assets/img/products/"+data.gambar+"' width='100'>";
                 document.getElementById("answare").innerHTML = "Jawab Permintaan kode barang "+data.kode_barang;
                 document.getElementById("btnAnsware").innerHTML = "<a href='#'' class='btn btn-danger' data-toggle='modal' data-target='#modalJawabAns'>Jawab</a>";
                 let ding = new Audio('https://res.cloudinary.com/dxfq3iotg/video/upload/v1557233563/warning.mp3');

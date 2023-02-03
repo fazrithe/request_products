@@ -24,14 +24,14 @@
                         </div>
                     </div>
                     <div class="col">
-                        <table class="table table-striped">
+                        <table class="table table-striped" id="myTable">
                             <thead>
                               <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">Nama Sales</th>
                                 <th scope="col"></th>
                                 <th scope="col">Permintaan Barang</th>
-                                <th scope="col">Jumlah</th>
+                                <th scope="col">Jumlah / Satuan</th>
                                 <th scope="col">Jam Minta</th>
                                 <th scope="col">Jam Selesai</th>
                                 <th scope="col">Jawaban Gudang</th>
@@ -56,13 +56,12 @@
                                     {{ $item->kode_barang }}<br>
                                     {{ $item->nama_barang }}
                                 </td>
-                                <td>{{ $item->total }}</td>
+                                <td>{{ $item->total }} /{{$item->satuan}}</td>
                                 <td>{{ $item->request_time }}</td>
                                 <td>{{ $item->answare_time }}</td>
                                 <td>
                                     @if($item->opt_answare)
-                                    {{ $item->opt_answare }}<br>
-                                    {{ $item->answare }}<hr>
+                                    {{ $item->opt_answare }}
                                     <div class="col-6">
                                         <a class="btn btn-danger" href="{{ url('deleteRequest') }}/{{$item->request_id}}">
                                         Selesai
@@ -133,6 +132,29 @@
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous">
 </script>
+{{-- <script>
+        $.ajax({
+            url: "{{ route('data.request') }}",
+            dataType: 'json',
+            success: function(data) {
+                var tot = 0;
+                for (var i=0; i<data.length; i++) {
+                    tot += i + i;
+                    let answareTime = data[i].answare_time;
+                    var row = $('<tr><td>'+(i+1)+'</td><td>' + data[i].sales_name+ '</td><td><a href="#" data-toggle="modal" data-target="#imageModal'+data[i].request_id+'"><img src="https://tianliong.co.id/info/assets/img/products/'+data[i].gambar+'" width="60"></a></td><td>'+data[i].kode_barang+'<br>'+data[i].nama_barang+'</td><td>'+data[i].total+' /'+data[i].satuan+'</td><td>'+data[i].request_time+'</td><td>'+answareTime+'</td><td>'+data[i].opt_answare+'<br> <a class="btn btn-danger" href="{{ url("deleteRequest") }}/'+data[i].request_id+'">Selesai</a></td></tr>');
+                    $('#myTable').append(row);
+                }
+
+                setInterval(function(){
+                    window.location.reload();
+                }, 5000);
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+                alert('Error: ' + textStatus + ' - ' + errorThrown);
+            }
+        });
+
+</script> --}}
 <script>
     jQuery(document).ready(function(){
        jQuery('#btnsearch').click(function(e){
