@@ -49,7 +49,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="#" data-toggle="modal" data-target="#imageModal{{ $item->id }}">
+                                    <a href="#" data-toggle="modal" data-target="#imageModal{{ $item->request_id }}">
                                         <img src="https://tianliong.co.id/info/assets/img/products/{{ $item->gambar }}" width="60"></a></td>
 
                                 <td>
@@ -172,7 +172,7 @@
 </script>
 <!-- Modal -->
 @foreach ($requestProducts as $index => $item)
-<div class="modal fade" id="imageModal{{ $item->id }}">
+<div class="modal fade" id="imageModal{{ $item->request_id }}">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
