@@ -359,6 +359,11 @@
     </div>
 </div>
 <script>
+    // setInterval(function(){
+    //     window.location.reload();
+    // }, 10000);
+</script>
+<script>
     window.onscroll = function() {myFunction()};
 
     var header = document.getElementById("toast");

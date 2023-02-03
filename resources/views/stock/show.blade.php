@@ -156,6 +156,11 @@
 
 </script> --}}
 <script>
+    setInterval(function(){
+        window.location.reload();
+    }, 5000);
+</script>
+<script>
     jQuery(document).ready(function(){
        jQuery('#btnsearch').click(function(e){
           e.preventDefault();
