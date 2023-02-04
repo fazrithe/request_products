@@ -134,7 +134,7 @@ class StockController extends Controller
      */
     public function history()
     {
-        $requestProducts = Request_product::select('request_products.id as request_id','request_products.sales_id','request_products.total','request_products.request_time','request_products.answare_time','request_products.opt_answare','request_products.answare','products.nama_barang','products.gambar','products.kode_barang','products.id as product_id','users.name as user_name','request_products.sales_name')
+        $requestProducts = Request_product::select('request_products.id as request_id','request_products.sales_id','request_products.total','request_products.request_time','request_products.answare_time','request_products.opt_answare','request_products.answare','products.nama_barang','products.gambar','products.kode_barang','products.id as product_id','products.satuan as satuan','users.name as user_name','request_products.sales_name')
                                             ->where('sales_id',Auth::user()->id)
                                             ->whereNotNull('deleted_at')
                                             ->join('products','products.id', '=','request_products.product_id')

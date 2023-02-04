@@ -31,7 +31,7 @@
                                 <th scope="col">Nama Sales</th>
                                 <th scope="col"></th>
                                 <th scope="col">Permintaan Barang</th>
-                                <th scope="col">Jumlah</th>
+                                <th scope="col">Jumlah /Satuan</th>
                                 <th scope="col">Jam Minta</th>
                                 <th scope="col">Jam Selesai</th>
                                 <th scope="col">Jawaban Gudang</th>
@@ -53,13 +53,12 @@
                                     {{ $item->kode_barang }}<br>
                                     {{ $item->nama_barang }}
                                 </td>
-                                <td>{{ $item->total }}</td>
+                                <td>{{ $item->total }} /{{$item->satuan}}</td>
                                 <td>{{ $item->request_time }}</td>
                                 <td>{{ $item->answare_time }}</td>
                                 <td>
                                     @if($item->opt_answare)
-                                    {{ $item->opt_answare }}<br>
-                                    {{ $item->answare }}<hr>
+                                    {{ $item->opt_answare }}
                                     @endif
                                 </td>
                               </tr>
