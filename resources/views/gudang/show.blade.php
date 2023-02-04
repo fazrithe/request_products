@@ -436,7 +436,7 @@
             type: 'GET',
             dataType: 'json',
             success: function(data) {
-                console.log(data)
+                console.log(data.merk)
                 if(data.id){
                 document.getElementById("total-permintaan").innerHTML = data.total;
                 document.getElementById("kode_barang-modal").innerHTML = data.kode_barang;
