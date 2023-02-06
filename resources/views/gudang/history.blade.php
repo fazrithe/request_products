@@ -72,7 +72,7 @@
                         <div id="jumlah" style="display: block">
                             <div class="row">
                                 <div class="col-6">
-                                    <a href="{{ url('showProduct') }}" class="btn btn-primary">Kembali</a>
+                                    <a href="{{ url('showProduct-gudang') }}" class="btn btn-primary">Kembali</a>
 
                                 </div>
                                 <div class="col-6">

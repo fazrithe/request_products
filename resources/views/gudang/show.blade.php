@@ -92,6 +92,9 @@
                         <div id="jumlah" style="display: block">
                             <div class="row">
                                 <div class="col-6">
+                                    <a href="{{ route('history.gudang') }}" class="btn btn-primary">History</a>
+                                </div>
+                                <div class="col-6">
                                     <a class="btn btn-danger" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
