@@ -50,7 +50,12 @@
                             <label class="col-md-4 col-form-label text-md-right">{{ __('Nama Sales') }}</label>
                             <div class="col-md-6">
                                 <div class="input-group">
-                                    <input type="text" name="sales_name" id="sales_name" onkeyup="sales_name()" class="form-control" value="" placeholder="Nama Sales">
+                                    {{-- <input type="text" name="sales_name" id="sales_name" onkeyup="sales_name()" class="form-control" value="" placeholder="Nama Sales"> --}}
+                                    <select class="form-control" name="sales_name">
+                                        @foreach($data['sales'] as $sales)
+                                            <option>{{ $sales->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -124,7 +129,7 @@
                                     <div class="col-4">
                                         <input type="hidden" name="update_date" class="form-control" value="{{ $data['login_date'] }}">
                                         <input type="hidden" id="id" class="form-control" name="id">
-                                        <input type="number" class="form-control" id="stok" name="stock">
+                                        <input type="number" class="form-control stok" onkeyup="stok_count()" id="stok" name="stock">
                                         <input type="hidden" id="sales_name2" name="sales_name">
                                     </div>
                                     <div class="col-4 text-left">
@@ -136,7 +141,7 @@
                                     <div class="col">
                                         <a href="#" class="btn btn-success">Scan</a>
                                     </div>
-                                    <div class="col" id="submit-permintaan">
+                                    <div class="col" id="submit-permintaan" style="display: none">
                                         <Button class="btn btn-primary">Submit</Button>
                                     </div>
                                 </div>
@@ -212,10 +217,13 @@
                         let image = document.getElementById("image");
                         image.src =
                         "https://tianliong.co.id/info/assets/img/products/"+result.data.gambar
+                    var btn = document.getElementById("submit-permintaan");
 
-                        document.getElementById("btnID")
-                                .style.display = "none";
-
+                    if(result.stok < 1){
+                        btn.style.display = "none";
+                    }else{
+                        btn.style.display = "block";
+                    }
                 }else{
                     alert("Data tidak ditemukan !");
                 }
@@ -266,12 +274,15 @@ html5QrCode.start({ facingMode: { exact: "user"} }, config, qrCodeSuccessCallbac
 }
 </script>
 <script>
-    var salesName = document.getElementById("sales_name").value;
+    function stok_count(){
+    var stok = document.getElementById("stok").value;
+    console.log(stok);
     var btn = document.getElementById("submit-permintaan");
-        if(salesName < 1){
+        if(stok < 1){
             btn.style.display = "none";
         }else{
             btn.style.display = "block";
+        }
     }
     function sales_name(){
         var x = document.getElementById("sales_name").value;
