@@ -51,9 +51,10 @@
                             <div class="col-md-6">
                                 <div class="input-group">
                                     {{-- <input type="text" name="sales_name" id="sales_name" onkeyup="sales_name()" class="form-control" value="" placeholder="Nama Sales"> --}}
-                                    <select class="form-control" name="sales_name">
+                                    <select class="form-control" name="sales_name" id="selectName">
+                                        <option value="0">---Pilih Sales---</option>
                                         @foreach($data['sales'] as $sales)
-                                            <option>{{ $sales->name }}</option>
+                                            <option value="{{$sales->name}}">{{ $sales->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -223,11 +224,7 @@
                         "https://tianliong.co.id/info/assets/img/products/"+result.data.gambar
                     var btn = document.getElementById("submit-permintaan");
 
-                    if(result.stok < 1){
                         btn.style.display = "none";
-                    }else{
-                        btn.style.display = "block";
-                    }
                 }else{
                     alert("Data tidak ditemukan !");
                 }
@@ -237,6 +234,19 @@
 </script>
 <script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
 <script>
+$(document ).ready(function() {
+    $('#selectName').change(function() {
+     var data = $(this).val();
+     document.getElementById("sales_name2").value = data;
+     var btn = document.getElementById("submit-permintaan");
+        if(data != 0){
+            btn.style.display = "block";
+        }else{
+            btn.style.display = "none";
+        }
+    });
+});
+
 function scanner(){
     var x = document.getElementById("display");
     var y = document.getElementById("scanner");
