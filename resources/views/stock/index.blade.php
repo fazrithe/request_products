@@ -224,7 +224,7 @@
                         "https://tianliong.co.id/info/assets/img/products/"+result.data.gambar
                     var btn = document.getElementById("submit-permintaan");
                     if(result.stok == 0){
-                        btn.style.display = "block";
+                        btn.style.display = "none";
                     }else{
                         btn.style.display = "none";
                     }
@@ -240,9 +240,11 @@
 $(document ).ready(function() {
     $('#selectName').change(function() {
      var data = $(this).val();
+     var stok_barang = document.getElementById("stok").value
      document.getElementById("sales_name2").value = data;
+     console.log(stok_barang);
      var btn = document.getElementById("submit-permintaan");
-        if(data != 0){
+        if(data != 0 && stok_barang > 0){
             btn.style.display = "block";
         }else{
             btn.style.display = "none";
