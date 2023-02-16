@@ -61,10 +61,13 @@
                         </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">{{ __('Kode Barang') }}</label>
+                            <label class="col-md-4 col-form-label text-md-right">{{ __('Kode Barang / Barcode') }}</label>
                             <div class="col-sm-4">
-                                <div class="form-group">
+                                <div class="form-group" id="display_select">
                                     <select class="form-control search-barang" id="kode_barang" style="width: 220px; height: 200px" name="kode_barang"></select>
+                                </div>
+                                <div class="form-group" id="display_text" style="display:none">
+                                    <input class="form-control" id="barcode" style="" name="kode_barang" placeholder="Barcode">
                                 </div>
                             </div>
                             <div class="col-sm-4">
@@ -139,7 +142,7 @@
 
                                 <div class="row mt-2">
                                     <div class="col">
-                                        <a href="#" class="btn btn-success">Scan</a>
+                                        <a href="#" class="btn btn-success" onclick="scanner()">Scan</a>
                                     </div>
                                     <div class="col" id="submit-permintaan" style="display: none">
                                         <Button class="btn btn-primary">Submit</Button>
@@ -187,6 +190,7 @@
              method: 'post',
              data: {
                 kode_barang: jQuery('#kode_barang').val(),
+                barcode: jQuery('#barcode').val(),
                 login_date: jQuery('#login_date').val(),
                 area: jQuery('#area').val(),
              },
@@ -237,14 +241,19 @@ function scanner(){
     var x = document.getElementById("display");
     var y = document.getElementById("scanner");
     var or = document.getElementById("or");
+    var select = document.getElementById("display_select");
+    var text = document.getElementById("display_text");
         if (x.style.display === "none") {
             x.style.display = "block";
             y.style.display = "none";
             or.style.display = "none";
+            select.style.display = "none";
+            text.style.display = "block";
         } else {
             x.style.display = "none";
             y.style.display = "block";
             or.style.display = "block";
+            select.style.display = "block";
         }
     let qrboxFunction = function(viewfinderWidth, viewfinderHeight) {
     let minEdgePercentage = 0.7; // 70%

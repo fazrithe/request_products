@@ -50,7 +50,7 @@ class StockController extends Controller
      */
     public function searchProduct(Request $request)
     {
-        $data = Product::where('kode_barang', $request->kode_barang)->orWhere('barcode',$request->kode_barang)->first();
+        $data = Product::where('kode_barang', $request->kode_barang)->orWhere('barcode',$request->barcode)->first();
         $datastock = Sales_stock::where('product_id', $data->id)->first();
         if(!empty($datastock)){
             $stok1 = $datastock->stok_gudang1;
