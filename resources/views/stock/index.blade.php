@@ -108,7 +108,7 @@
                                 <label id="merk"></label>
                             </div>
                             <div class="col-6">
-                                <label id="barcode"></label>
+                                <label id="barcode_value"></label>
                             </div>
                         </div>
                         <div class="row">
@@ -203,7 +203,7 @@
                     jQuery('#merk').html(result.data.merk);
                     jQuery('#nama_barang').html(result.data.nama_barang);
                     jQuery('#kode_barang_1').html(result.data.kode_barang);
-                    jQuery('#barcode').html(result.data.barcode);
+                    jQuery('#barcode_value').html(result.data.barcode);
                     jQuery('#satuan').html(result.data.satuan);
                     jQuery('#id').val(result.data.id);
                     jQuery('#stok').val(result.stok);
@@ -223,8 +223,11 @@
                         image.src =
                         "https://tianliong.co.id/info/assets/img/products/"+result.data.gambar
                     var btn = document.getElementById("submit-permintaan");
-
+                    if(result.stok == 0){
+                        btn.style.display = "block";
+                    }else{
                         btn.style.display = "none";
+                    }
                 }else{
                     alert("Data tidak ditemukan !");
                 }
