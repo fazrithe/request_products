@@ -10,6 +10,7 @@ use App\Models\Sales_stock;
 use App\Models\Request_product;
 use App\Models\User;
 use App\Models\Sales;
+use Illuminate\Support\Facades\DB;
 
 class StockController extends Controller
 {
@@ -155,8 +156,9 @@ class StockController extends Controller
         $data = [];
 
         if($request->filled('q')){
-            $data = product::select("nama_barang", "kode_barang")
+            $data = product::select("nama_barang", "kode_barang", DB::raw('CONCAT(kode_barang,\' \',kode_barang,\' \',barcode) AS fullname_barang'))
                         ->where('kode_barang', 'LIKE', '%'. $request->get('q'). '%')
+                        ->orwhere('barcode', 'LIKE', '%'. $request->get('q'). '%')
                         ->get();
         }
 

@@ -308,7 +308,7 @@ html5QrCode.start({ facingMode: { exact: "user"} }, config, qrCodeSuccessCallbac
             return {
               results:  $.map(data, function (item) {
                     return {
-                        text: item.kode_barang,
+                        text: item.fullname_barang,
                         id: item.kode_barang
                     }
                 })
